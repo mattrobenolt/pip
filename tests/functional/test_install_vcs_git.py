@@ -57,7 +57,7 @@ def test_get_refs_should_ignore_no_branch(script):
     assert result['branch0.1'] == commit, result
 
 
-@patch('pip.vcs.git.Git.get_refs')
+@patch('pip.vcs.git.Git.get_short_refs')
 def test_check_rev_options_should_handle_branch_name(get_refs_mock):
     get_refs_mock.return_value = {'master': '123456', '0.1': '123456'}
     git = Git()
@@ -66,7 +66,7 @@ def test_check_rev_options_should_handle_branch_name(get_refs_mock):
     assert result == ['123456']
 
 
-@patch('pip.vcs.git.Git.get_refs')
+@patch('pip.vcs.git.Git.get_short_refs')
 def test_check_rev_options_should_handle_tag_name(get_refs_mock):
     get_refs_mock.return_value = {'master': '123456', '0.1': '123456'}
     git = Git()
@@ -75,7 +75,7 @@ def test_check_rev_options_should_handle_tag_name(get_refs_mock):
     assert result == ['123456']
 
 
-@patch('pip.vcs.git.Git.get_refs')
+@patch('pip.vcs.git.Git.get_short_refs')
 def test_check_rev_options_should_handle_ambiguous_commit(get_refs_mock):
     get_refs_mock.return_value = {'master': '123456', '0.1': '123456'}
     git = Git()
